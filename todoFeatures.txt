@@ -1,0 +1,10 @@
+Create a todo
+Delete a todo
+Update a todo
+Read a todo
+Sort by Add Date
+Sort by Due Date
+Sort by Priority
+Add reminder
+Add priority
+Add notes
