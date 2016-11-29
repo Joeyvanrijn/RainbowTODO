@@ -3,13 +3,48 @@
     <head>
         <title>Rainbow ToDo | List</title>
     </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <body>
         <h1>RainBow ToDo | List</h1>
-        <ul>
-            <li>Todo 1</li>
-            <li>ToDo 2</li>
-        </ul>
+        <b>Insert new todo</b>
+        <!-- input form -->
+        <table>
+            <tbody>
+                <tr><td>Todo name</td><td><input id="addName" class="inputForm"></td></tr>
+                <tr><td>Todo due date</td><td><input class="inputForm" type="date" id="addDate"></td></tr>
+                <tr><td>Todo priority (1-10)</td><td><input class="inputForm" type="number" id="addPriority"></td></tr>
+                <tr><td></td><td><button id="addButton">Add</button></td></tr>
+            </tbody>
+        </table>
+        <hr>
+
+        <!-- ToDo list-->
+        <b>Sort by:</b><br>
+        <button id="sortID">Insert date</button><button id="sortDate">Due date</button><button id="sortPrio">Priority</button>
+
+<table>
+    <thead><tr><th></th><th></th><th>Due Date</th><th>Priority</th><th>Text</th></tr>
+        <tbody id="todoList">
+            <li><i>No todo's</i></li>
+        </tbody>
+    </table>
+
+        <hr>
+
+        <!-- Update form -->
+        <b>Update</b>
+        <table>
+            <tbody>
+                <input id="updateID" type="hidden">
+                <tr><td>Todo name</td><td><input id="updateName" class="updateForm"></td></tr>
+                <tr><td>Todo due date</td><td><input class="updateForm" type="date" id="updateDate"></td></tr>
+                <tr><td>Todo priority (1-10)</td><td><input class="updateForm" type="number" id="updatePriority"></td></tr>
+                <tr><td></td><td><button id="updateButton">Update</button></td></tr>
+            </tbody>
+        </table>
 
         Click <a href='index.html'>here</a> to go to the homepage.
+        <script src="app.js"></script>
     </body>
 </html>
