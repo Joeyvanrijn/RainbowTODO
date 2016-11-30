@@ -38,21 +38,24 @@ function comparePrio(a,b) {
                     text: "TestA",
                     date: new Date("2-1-2016"),
                     imp: 3,
-                    done: true
+                    done: true,
+                    tag: 1
                 });
             todos.push({
                     id: 4,
                     text: "TestB",
                     date: new Date("1-1-2016"),
                     imp: 30,
-                    done: false
+                    done: false,
+                    tag: 2
                 });
             todos.push({
                     id: 3,
                     text: "TestC",
                     date: new Date("5-2-2016"),
                     imp: 7,
-                    done: true
+                    done: true,
+                    tag: 3
                 });
             this.redraw();
         },
@@ -69,6 +72,7 @@ function comparePrio(a,b) {
                 date: new Date($("#addDate").val()),
                 imp:  $("#addPriority").val(),
                 done: false,
+                tag: 1
             };
 
             $("#addForm").val("");
@@ -81,7 +85,7 @@ function comparePrio(a,b) {
 
             for (i in todos) {
                 var date = todos[i].date.getDate() + "-" + (todos[i].date.getMonth()+1) + "-" + todos[i].date.getFullYear();
-                var text = "<td><input type='checkbox' id=" + todos[i].id + " " + ischecked(todos[i]) + "></td><td>" +  "<button class='deleteTodo' id=" + todos[i].id + ">Delete</button></td><td><button class='updateTodo' id=" + todos[i].id + ">Update</button>" + date + "</td><td>" + todos[i].imp;
+                var text = "<td><input type='checkbox' id=" + todos[i].id + " " + ischecked(todos[i]) + "></td><td>" +  "<button class='deleteTodo' id=" + todos[i].id + ">Delete</button></td><td><button class='updateTodo' id=" + todos[i].id + ">Update</button></td><td><button id=" + todos[i].id + " class='tagChange'>" + todos[i].tag + "</button></td><td>" + date + "</td><td>" + todos[i].imp;
                 if(todos[i].done)   {
                     $("#todoList").append("<tr>" + text + "<td><strike>" + todos[i].text + "</strike>" + "</tr>");
                 }
@@ -146,14 +150,30 @@ function comparePrio(a,b) {
             for(i in todos)
             {
                 if(todos[i].id == id){
-                    var id = i;
+                    var ida = i;
                 }
             }
-            todos[i].text = $('#updateName').val();
-            todos[i].date = new Date($('#updateDate').val());
-            todos[i].imp = $('#updatePriority').val();
+            todos[ida].text = $('#updateName').val();
+            todos[ida].date = new Date($('#updateDate').val());
+            todos[ida].imp = $('#updatePriority').val();
             this.redraw();
 
+        },
+        updateTag: function(id) {
+            for(i in todos)
+            {
+                if(todos[i].id == id){
+                    var ida = i;
+                }
+            }
+            if(todos[ida].tag < 3)
+            {
+                todos[ida].tag = todos[ida].tag + 1;
+            }
+            else {
+                todos[ida].tag = 1;
+            }
+            this.redraw();
         }
 
     }
@@ -175,6 +195,9 @@ var main = function() {
     });
     $("#todoList").on('click',"button[class='updateTodo']", function(e) {
         TodoList.load(e.target.id);
+    });
+    $("#todoList").on('click',"button[class='tagChange']", function(e) {
+        TodoList.updateTag(e.target.id);
     });
 
     $("#addButton").on("click", function() {
