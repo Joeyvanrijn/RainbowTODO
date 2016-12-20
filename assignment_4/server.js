@@ -4,6 +4,7 @@ var app = express();
 var server = require('http').createServer(app);
 var bodyParser = require('body-parser');
 var Todos = require('./server/todos.js');
+var Admin = require('./server/admin.js')
 
 
 app.use(express.static('public'))
@@ -21,35 +22,40 @@ app.get('/list', function(req, res,next) {
 app.get('/docs', function(req, res,next) {
     res.sendFile(__dirname + '/templates/docs.html');
 });
+app.get('/admin', function(req, res,next) {
+    res.sendFile(__dirname + '/templates/admin.html');
+});
+
+app.get('/adminData', function(req,res,next){
+    Admin.getData(function(data) {
+        res.write(JSON.stringify(data));
+        res.end();
+    })
+});
+
 
 app.get('/getTodos', function(req, res, next) {
     Todos.findByUserId(1, function(todos) {
         res.write(JSON.stringify(todos));
         res.end();
-    })
+    });
 
-})
+});
 
 app.post("/addTodo", function(req, res, next) {
     Todos.create(req.body, function() {
         res.end("ok");
     });
-})
+});
 
 app.post("/updateTodo", function(req, res, next) {
     console.log("id: " + req.body.id);
     Todos.update(req.body, function() {
         console.log("Updated todo: " + req.body.id);
         res.end("ok");
-    })
-})
+    });
+});
 app.post("/deleteTodo", function(req, res, next) {
-    for(i in todos)
-    {
-        if(todos[i].id == req.body.id){
-            todos.splice(i, 1);
-        }
-    }
     Todos.remove(req.body.id, function() {
         console.log("Deleted todo: " + req.body.id);
         res.end("ok");
