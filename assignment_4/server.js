@@ -11,34 +11,6 @@ app.use(bodyParser.json());
 
 const PORT = 4200;
 
-var todos = [];
-
-// Add some sample data to the todos array
-todos.push({
-        id: 2,
-        text: "TestA",
-        date: new Date("2-1-2016"),
-        imp: 3,
-        done: true,
-        tag: 1
-    });
-todos.push({
-        id: 4,
-        text: "TestB",
-        date: new Date("1-1-2016"),
-        imp: 30,
-        done: false,
-        tag: 2
-    });
-todos.push({
-        id: 3,
-        text: "TestC",
-        date: new Date("5-2-2016"),
-        imp: 7,
-        done: true,
-        tag: 3
-    });
-
 // Request the homepage
 app.get('/', function(req, res,next) {
     res.sendFile(__dirname + '/templates/index.html');
@@ -98,9 +70,6 @@ app.post("/updateTodoTag", function(req, res, next) {
         res.end("ok");
     })
 });
-
-
-
 
 
 server.listen(PORT);
