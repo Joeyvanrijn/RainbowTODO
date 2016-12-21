@@ -50,6 +50,7 @@ app.post("/addTodo", function(req, res, next) {
 
 app.post("/updateTodo", function(req, res, next) {
     console.log("id: " + req.body.id);
+    if(req.body.id == "null"){res.end("ok")}
     Todos.update(req.body, function() {
         console.log("Updated todo: " + req.body.id);
         res.end("ok");
