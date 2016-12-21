@@ -48,7 +48,6 @@ app.get('/list', function(req, res,next) {
 app.get('/docs', function(req, res,next) {
     res.sendFile(__dirname + '/templates/docs.html');
 });
-
 app.get('/getTodos', function(req, res, next) {
     res.write(JSON.stringify(todos));
     res.end();
