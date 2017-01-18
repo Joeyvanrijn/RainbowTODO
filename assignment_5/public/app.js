@@ -179,11 +179,11 @@ var main = function() {
     // Main initialisation
     $("#addName").focus();
     TodoList.init();
-    // var myVar = setInterval(myTimer, 1000);
-    // function myTimer() {
-    //     console.log("Polling new data from server");
-    //     TodoList.init();
-    // }
+    var myVar = setInterval(myTimer, 1000);
+    function myTimer() {
+        console.log("Polling new data from server");
+        TodoList.init();
+    }
 
     // Create coockie if not exist
     if($.cookie('font-size') === undefined) {
