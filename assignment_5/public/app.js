@@ -179,13 +179,27 @@ var main = function() {
     // Main initialisation
     $("#addName").focus();
     TodoList.init();
-    var myVar = setInterval(myTimer, 1000);
-    function myTimer() {
-        console.log("Polling new data from server");
-        TodoList.init();
+    // var myVar = setInterval(myTimer, 1000);
+    // function myTimer() {
+    //     console.log("Polling new data from server");
+    //     TodoList.init();
+    // }
+
+    // Create coockie if not exist
+    if($.cookie('font-size') === undefined) {
+        $.cookie('font-size', parseInt(14), { expires: 7 });
     }
+    $("body").css({ 'font-size': $.cookie('font-size') + "px" });
 
-
+    $('#increase-font').on('click', function() {
+        $.cookie('font-size', parseInt($.cookie('font-size')) + 1);
+        console.log($.cookie('font-size') + "px");
+        $("body").css({ 'font-size': $.cookie('font-size') + "px" });
+    });
+    $('#decrease-font').on('click', function() {
+        $.cookie('font-size', parseInt($.cookie('font-size')) - 1);
+        $("body").css({ 'font-size': $.cookie('font-size') + "px" });
+    });
 
     // Listners
     $("#todoList").on('click',"input[type='checkbox']", function(e) {
