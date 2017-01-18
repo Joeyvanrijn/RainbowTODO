@@ -2,10 +2,22 @@ var express = require('express');
 var router = express.Router();
 var Todos = require('./todos.js');
 var Admin = require('./admin.js');
+var User = require('./user.js');
 
 // Request the homepage
+
+router.get('/error', function(req, res,next) {
+    res.render('pages/error');
+});
 router.get('/', function(req, res,next) {
-    res.render('pages/index');
+    if(req.user) {
+        User.getName(req.user, function(name) {
+            res.render('pages/index', {name: name});
+        });
+    }
+    else {
+        res.render('pages/index');
+    }
 });
 
 // Request the homepage with personal message!
@@ -15,7 +27,14 @@ router.get('/welcome/:name', function(req, res,next) {
 
 
 router.get('/list', function(req, res,next) {
-    res.render('pages/list');
+    if(req.user) {
+        User.getName(req.user, function(name) {
+            res.render('pages/list', {name: name});
+        });
+    }
+    else {
+        res.render('pages/error');
+    }
 });
 router.get('/docs', function(req, res,next) {
     res.render('pages/docs');
@@ -33,17 +52,30 @@ router.get('/adminData', function(req,res,next){
 
 
 router.get('/getTodos', function(req, res, next) {
-    Todos.findByUserId(1, function(todos) {
-        res.write(JSON.stringify(todos));
-        res.end();
-    });
+    if (req.user) {
+        Todos.findByUserId(req.user, function(todos) {
+            res.write(JSON.stringify(todos));
+            res.end();
+        });
+    }
+    else {
+        res.render('pages/error');
+    }
 
 });
 
 router.post("/addTodo", function(req, res, next) {
-    Todos.create(req.body, function() {
-        res.end("ok");
-    });
+    if(req.user) {
+        Todos.create(req.body, req.user ,function() {
+            res.end("ok");
+        });
+    }
+    else {
+        {
+            res.render('pages/error');
+        }
+    }
+
 });
 
 router.post("/updateTodo", function(req, res, next) {

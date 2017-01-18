@@ -9,5 +9,9 @@
         <h1>Rainbow ToDo</h1>
         <p id="leader">Welcome <% if (locals.name) { %> <%= name %> <% } %> to rainbow todo!</p>
         Click <a href='/list'>here</a> to go to your todo list.
+        <% if(!locals.name) { %><br><a href="/auth/google">Sign In or register with Google</a><% } %>
+
+
+        <br><br><% if(locals.name) {%> Currenty logged in as <%= name %> <a href="/logout"> Logout</a> <% } %>
     </body>
 </html>

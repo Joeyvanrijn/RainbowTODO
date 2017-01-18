@@ -1,5 +1,5 @@
 DB = require('./database.js');
-
+mysql = require('mysql');
 module.exports = {
     findByUserId: function(userId, done) {
         DB.query("SELECT * FROM `todos` WHERE `owner` = " + userId + ";", function(rows) {
@@ -16,11 +16,11 @@ module.exports = {
             done();
         });
     },
-    create: function(todo, done) {
+    create: function(todo, user, done) {
         todo.date = new Date(todo.date).toISOString().slice(0, 19).replace('T', ' ');
         if(todo.imp == '') {todo.imp = 1;}
         DB.query("INSERT INTO `todos` (`text`, `date`, `imp`, `done`, `tag`, `owner`) "
-        +" VALUES (\'"+todo.text+"\', \'"+todo.date+"\', \'"+todo.imp+"\', 0, \'"+todo.tag+"\', "+ 1 +");", function() {
+        +" VALUES (\'"+todo.text+"\', \'"+todo.date+"\', \'"+todo.imp+"\', 0, \'"+todo.tag+"\', "+ mysql.escape(user) +");", function() {
             done();
         });
     },

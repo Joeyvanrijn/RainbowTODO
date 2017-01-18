@@ -12,6 +12,9 @@
       "express": "latest",
       "mysql": "latest",
       "nodemon": "latest",
-      "jquery.cookie": "latest"
+      "jquery.cookie": "latest",
+      "passport": "latest",
+      "passport-google-oauth": "latest",
+      "express-session": "latest"
   }
 }
