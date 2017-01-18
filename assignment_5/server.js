@@ -10,6 +10,7 @@ var router = require('./server/routes.js');
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use('/', router);
+app.set('view engine', 'ejs');
 PORT = 4200;
 
 

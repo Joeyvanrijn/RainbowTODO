@@ -5,23 +5,23 @@ var Admin = require('./admin.js');
 
 // Request the homepage
 router.get('/', function(req, res,next) {
-    res.sendFile(__dirname + '/templates/index.html');
+    res.render('pages/index');
 });
 
 // Request the homepage with personal message!
 router.get('/welcome/:name', function(req, res,next) {
-    res.sendFile(__dirname + '/templates/index.html');
+    res.render('pages/index', {name: "Erne"});
 });
 
 
 router.get('/list', function(req, res,next) {
-    res.sendFile(__dirname + '/templates/list.html');
+    res.render('pages/list');
 });
 router.get('/docs', function(req, res,next) {
-    res.sendFile(__dirname + '/templates/docs.html');
+    res.render('pages/docs');
 });
 router.get(/^\/(admin|admn|admun)/, function(req, res,next) {
-    res.sendFile(__dirname + '/templates/admin.html');
+    res.render('pages/admin');
 });
 
 router.get('/adminData', function(req,res,next){
