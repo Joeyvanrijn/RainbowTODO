@@ -1,0 +1,78 @@
+body {
+    font-family: Arial;
+    font-size: 14px;
+}
+input {
+    position: relative;
+    top:1px;
+    width: 100%;
+}
+
+input[type="checkbox"] {
+    height: 20px;
+    width: 20px;
+}
+
+hr {
+    color: purple;
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-width: 10px;
+    border-color: purple;
+}
+
+
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+th {
+    border-bottom: 3px solid black;
+}
+td, th {
+    padding: 4px;
+}
+
+#leader {
+    color: green;
+    position: relative;
+}
+
+
+
+.splash {
+    position: relative;;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.splash h1 {
+    color: red;
+}
+
+
+
+/* The element to apply the animation to */
+body {
+    background-color: yellow;
+    animation-name: example;
+    animation-duration: 4s;
+}
+
+a:hover {
+    background-color: grey;
+}
+
+button:active {
+    background-color: purple;
+}

@@ -1,0 +1,20 @@
+{
+  "name": "rainbow-todo-server",
+  "version": "0.0.1",
+  "description": "Webserver for RainbowToDo appilication",
+  "private": true,
+  "scripts": {
+    "start": "nodemon Server.js"
+  },
+  "dependencies": {
+      "ejs": "^1.0.0",
+      "body-parser": "latest",
+      "express": "latest",
+      "mysql": "latest",
+      "nodemon": "latest",
+      "jquery.cookie": "latest",
+      "passport": "latest",
+      "passport-google-oauth": "latest",
+      "express-session": "latest"
+  }
+}
